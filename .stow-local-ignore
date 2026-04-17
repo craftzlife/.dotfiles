@@ -1,0 +1,8 @@
+\.git
+\.DS_Store
+README\.md
+install\.sh
+.*\.local
+Dockerfile
+\.gitignore
+\.gitmodules
