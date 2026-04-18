@@ -14,17 +14,11 @@ RUN apt-get update && \
 RUN useradd -m tester && \
     echo "tester ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-# Set working directory
-WORKDIR /home/tester
-
-# Copy the dotfiles into the container
-COPY --chown=tester:tester install.sh .
+# Set working directory for mounted workspace scripts
+WORKDIR /workspace
 
 # Switch to the test user
 USER tester
 
-# Make the script executable
-RUN chmod +x install.sh
-
-# Run the installation script and then drop into zsh (JSON format recommended)
-CMD ["/bin/zsh", "-c", "./install.sh && exec zsh"]
+# Run the runtime install script from the mounted workspace, then drop into zsh
+CMD ["/bin/zsh", "-c", "chmod +x /workspace/scripts/install.sh /workspace/scripts/update.sh 2>/dev/null || true && cd /workspace && if [ \"$MODE\" = \"update\" ]; then ./scripts/update.sh; else ./scripts/install.sh; fi && exec zsh"]
