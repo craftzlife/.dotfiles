@@ -18,3 +18,14 @@ autoload -U compinit; compinit
 source ~/.config/zsh/pluggins/fzf-tab/fzf-tab.plugin.zsh
 source ~/.config/zsh/pluggins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/zsh/pluggins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ls='ls --color=auto'
+alias ll='ls -al'
+alias la='ls -A'
+alias l='ls -C'
+alias cls='clear'
+alias grep='grep --color=auto'
+alias reload='source ~/.config/zsh/.zshrc'
