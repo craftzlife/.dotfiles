@@ -4,7 +4,7 @@
 cd ~/.dotfiles
 
 # Pull the latest changes and update submodules
-git pull --recurse-submodules --depth=1
+git pull --recurse-submodules --depth=5
 
 # Remove existing stowed symlinks for a clean reapply
 stow -D . -t ~
