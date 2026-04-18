@@ -13,7 +13,7 @@ Install or update dotfiles in one command:
 Or, if you have already cloned the repository:
 
 ```bash
-./scripts/install.sh
+/bin/bash scripts/install.sh
 ```
 
 Running `install.sh` again will automatically detect an existing installation and update instead.
@@ -22,14 +22,14 @@ Running `install.sh` again will automatically detect an existing installation an
 
 ### Install or Update Dotfiles
 ```bash
-~/.dotfiles/scripts/install.sh
+/bin/bash ~/.dotfiles/scripts/install.sh
 ```
 - First run: installs prerequisites, clones repo, applies symlinks
 - Subsequent runs: detects existing installation and updates (git pull + restow)
 
 ### Uninstall Dotfiles
 ```bash
-~/.dotfiles/scripts/uninstall.sh
+/bin/bash ~/.dotfiles/scripts/uninstall.sh
 ```
 
 ## Scripts

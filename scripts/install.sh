@@ -20,10 +20,11 @@ error() {
 # ============================================================================
 
 check_zsh() {
-  if ! command -v zsh &> /dev/null; then
+  if command -v zsh &> /dev/null || [ -x /bin/zsh ] || [ -x /usr/bin/zsh ] || [ -x /home/linuxbrew/.linuxbrew/bin/zsh ]; then
+    log "Zshell is installed."
+  else
     error "Zshell is not installed. Please install Zshell and try again."
   fi
-  log "Zshell is installed."
 }
 
 # ============================================================================
