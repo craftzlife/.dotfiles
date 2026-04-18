@@ -22,4 +22,4 @@ WORKDIR /workspace
 USER tester
 
 # Run the selected runtime script from the mounted workspace, then drop into zsh
-CMD ["/bin/zsh", "-c", "chmod +x /workspace/scripts/install.sh /workspace/scripts/update.sh /workspace/scripts/uninstall.sh 2>/dev/null || true && cd /workspace && case \"$MODE\" in update) ./scripts/update.sh ;; uninstall) ./scripts/uninstall.sh ;; *) ./scripts/install.sh ;; esac && exec zsh"]
+CMD ["/bin/zsh", "-c", "chmod +x /workspace/scripts/install.sh /workspace/scripts/uninstall.sh 2>/dev/null || true && cd /workspace && case \"$MODE\" in uninstall) ./scripts/uninstall.sh ;; *) ./scripts/install.sh ;; esac && exec zsh"]
