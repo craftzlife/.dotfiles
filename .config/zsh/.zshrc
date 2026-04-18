@@ -29,3 +29,6 @@ alias l='ls -C'
 alias cls='clear'
 alias grep='grep --color=auto'
 alias reload='source ~/.config/zsh/.zshrc'
+
+# Load zsh local configuration if it exists
+[[ -f ~/.config/zsh/.zshrc.local ]] && source ~/.config/zsh/.zshrc.local

@@ -51,3 +51,11 @@ cd ~/.dotfiles
 stow . -t ~
 
 echo "Installation complete!"
+
+# Create .zshrc.local if it doesn't exist
+if [ ! -f ~/.config/zsh/.zshrc.local ]; then
+    touch ~/.config/zsh/.zshrc.local
+    echo "Created ~/.config/zsh/.zshrc.local for local configuration."
+fi
+# Display usage instructions for .zshrc.local
+echo "Add any local configuration to ~/.config/zsh/.zshrc.local (this file is ignored by git) and it will be sourced automatically when you start a new terminal session."
