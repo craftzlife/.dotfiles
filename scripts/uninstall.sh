@@ -4,7 +4,7 @@
 cd ~/.dotfiles
 
 # Remove stowed symlinks from the home directory
-stow -D . -t ~
+stow -D . -t ~  --verbose
 
 echo "Dotfiles uninstalled!"
 echo "To remove the dotfiles repository, run: `cd ~ && rm -rf ~/.dotfiles`"

@@ -48,7 +48,7 @@ git clone --recurse-submodules https://github.com/craftzlife/.dotfiles.git ~/.do
 echo "Applying dotfiles with GNU Stow..."
 cd ~/.dotfiles
 # stow . and display the created symlinks
-stow . -t ~
+stow . -t ~  --verbose
 
 echo "Installation complete!"
 

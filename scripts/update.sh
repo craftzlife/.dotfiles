@@ -7,9 +7,9 @@ cd ~/.dotfiles
 git pull --recurse-submodules --depth=5
 
 # Remove existing stowed symlinks for a clean reapply
-stow -D . -t ~
+stow -D . -t ~  --verbose
 
 # Restow the current dotfiles into the home directory
-stow . -t ~
+stow . -t ~  --verbose
 
 echo "Successfully updated .dotfiles!"

@@ -21,7 +21,7 @@ Or, if you have already cloned the repository:
 To symlink the configuration files to your home directory manually, run the following command from the root of this repository:
 
 ```bash
-stow . -t ~
+stow . -t ~ --verbose
 ```
 
 This will create the following symlinks in your home directory:
@@ -33,5 +33,5 @@ This will create the following symlinks in your home directory:
 To remove the symlinks:
 
 ```bash
-stow -D . -t ~
+stow -D . -t ~  --verbose
 ```
