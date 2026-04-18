@@ -7,4 +7,4 @@ cd ~/.dotfiles
 stow -D . -t ~  --verbose
 
 echo "Dotfiles uninstalled!"
-echo "To remove the dotfiles repository, run: `cd ~ && rm -rf ~/.dotfiles`"
+echo "To remove the dotfiles repository, run: 'cd ~ && rm -rf ~/.dotfiles'"

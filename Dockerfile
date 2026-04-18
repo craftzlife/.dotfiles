@@ -3,10 +3,11 @@ FROM ubuntu:latest
 
 # Avoid prompts from apt
 ENV DEBIAN_FRONTEND=noninteractive
+ENV MODE=install
 
-# Install sudo and zsh (prerequisites for the script)
+# Install runtime prerequisites for stow and shell testing
 RUN apt-get update && \
-    apt-get install -y sudo zsh && \
+    apt-get install -y sudo zsh git curl stow fzf neovim && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -20,5 +21,5 @@ WORKDIR /workspace
 # Switch to the test user
 USER tester
 
-# Run the runtime install script from the mounted workspace, then drop into zsh
-CMD ["/bin/zsh", "-c", "chmod +x /workspace/scripts/install.sh /workspace/scripts/update.sh 2>/dev/null || true && cd /workspace && if [ \"$MODE\" = \"update\" ]; then ./scripts/update.sh; else ./scripts/install.sh; fi && exec zsh"]
+# Run the selected runtime script from the mounted workspace, then drop into zsh
+CMD ["/bin/zsh", "-c", "chmod +x /workspace/scripts/install.sh /workspace/scripts/update.sh /workspace/scripts/uninstall.sh 2>/dev/null || true && cd /workspace && case \"$MODE\" in update) ./scripts/update.sh ;; uninstall) ./scripts/uninstall.sh ;; *) ./scripts/install.sh ;; esac && exec zsh"]

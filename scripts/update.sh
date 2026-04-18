@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Load shared prerequisite functions
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/prereqs.sh"
+ensure_prereqs
+
 # Go to the installed dotfiles repository
 cd ~/.dotfiles
 
