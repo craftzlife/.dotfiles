@@ -14,6 +14,7 @@ source ~/.config/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $POWERLEVEL9K_CONFIG_FILE ]] || source $POWERLEVEL9K_CONFIG_FILE
 
 # Plugins
+fpath=(~/.config/zsh/pluggins/completions $fpath)
 autoload -U compinit; compinit
 source ~/.config/zsh/pluggins/fzf-tab/fzf-tab.plugin.zsh
 source ~/.config/zsh/pluggins/zsh-autosuggestions/zsh-autosuggestions.zsh
