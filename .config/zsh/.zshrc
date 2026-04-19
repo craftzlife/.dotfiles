@@ -30,5 +30,14 @@ alias cls='clear'
 alias grep='grep --color=auto'
 alias reload='source ~/.config/zsh/.zshrc'
 
+# Git aliases
+alias gst='git status'
+alias gl='git log --graph'
+alias gc='git commit'
+alias ga='git add'
+
+# Vim/nvim 
+alias vi='nvim'
+
 # Load zsh local configuration if it exists
 [[ -f ~/.config/zsh/.zshrc.local ]] && source ~/.config/zsh/.zshrc.local
