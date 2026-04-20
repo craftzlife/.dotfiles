@@ -20,7 +20,7 @@ error() {
 # ============================================================================
 
 check_zsh() {
-  if command -v zsh &> /dev/null || [ -x /bin/zsh ] || [ -x /usr/bin/zsh ] || [ -x /home/linuxbrew/.linuxbrew/bin/zsh ]; then
+  if command -v zsh &>/dev/null || [ -x /bin/zsh ] || [ -x /usr/bin/zsh ] || [ -x /home/linuxbrew/.linuxbrew/bin/zsh ]; then
     log "Zshell is installed."
   else
     error "Zshell is not installed. Please install Zshell and try again."
@@ -34,16 +34,16 @@ check_zsh() {
 handle_update() {
   log "Dotfiles already installed. Updating..."
   cd ~/.dotfiles
-  
+
   log "Pulling latest changes..."
   git pull --recurse-submodules --depth=5
-  
+
   log "Removing existing symlinks..."
   stow -D . -t ~ --verbose
-  
+
   log "Reapplying symlinks..."
   stow . -t ~ --verbose
-  
+
   log "Successfully updated dotfiles!"
 }
 
@@ -58,21 +58,21 @@ install_homebrew() {
 
 install_prerequisites_macos() {
   log "Installing prerequisites on macOS..."
-  
-  if ! command -v brew &> /dev/null; then
+
+  if ! command -v brew &>/dev/null; then
     install_homebrew
   fi
-  
+
   log "Installing git, curl, stow, fzf, nvim via Homebrew..."
-  brew install git curl stow fzf nvim
+  brew install git stow fzf nvim ripgrep
 }
 
 install_prerequisites_ubuntu() {
   log "Installing prerequisites on Ubuntu..."
-  
+
   sudo apt update
   log "Installing git, curl, stow, fzf, neovim via apt..."
-  sudo apt install -y git curl stow fzf neovim
+  sudo apt install -y git stow fzf neovim ripgrep
 }
 
 install_prerequisites() {
@@ -82,12 +82,12 @@ install_prerequisites() {
     if [ -f /etc/os-release ]; then
       . /etc/os-release
       case "$ID" in
-        ubuntu)
-          install_prerequisites_ubuntu
-          ;;
-        *)
-          error "Unsupported Linux distribution: $ID"
-          ;;
+      ubuntu)
+        install_prerequisites_ubuntu
+        ;;
+      *)
+        error "Unsupported Linux distribution: $ID"
+        ;;
       esac
     else
       error "Cannot determine Linux distribution. Please install git, curl, and stow manually."
@@ -131,16 +131,16 @@ setup_zshrc_local() {
 # ============================================================================
 
 main() {
+  install_prerequisites
   check_zsh
-  
+
   # Check if already installed
   if [ -d ~/.dotfiles ]; then
     handle_update
     return 0
   fi
-  
+
   # Fresh installation
-  install_prerequisites
   clone_dotfiles
   apply_dotfiles
   setup_zshrc_local
