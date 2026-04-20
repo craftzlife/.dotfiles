@@ -2,15 +2,15 @@
 
 _flutter() {
   local si=$IFS
+  IFS=$'\n'
   compadd -- $(COMP_CWORD=$((CURRENT-1)) \
                COMP_LINE=$BUFFER \
-               COMP_POINT=0 \
+               COMP_POINT=$CURSOR \
                flutter completion -- "${words[@]}" \
                2>/dev/null)
   IFS=$si
 }
 
-# If the script is being executed as a completion function, call it.
 if [ "$funcstack[1]" = "_flutter" ]; then
     _flutter "$@"
 fi
