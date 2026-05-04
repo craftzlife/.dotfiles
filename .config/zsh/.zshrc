@@ -1,3 +1,18 @@
+
+# History settings
+HISTFILE=~/.config/zsh/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+# Share history between all sessions as soon as commands are entered
+setopt SHARE_HISTORY
+# Append to history file immediately, not when the shell exits
+setopt INC_APPEND_HISTORY
+# Do not record an event that was just recorded again.
+setopt HIST_IGNORE_DUPS
+# Expire duplicate entries first when trimming history.
+setopt HIST_EXPIRE_DUPS_FIRST
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
