@@ -29,6 +29,7 @@ source ~/.config/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $POWERLEVEL9K_CONFIG_FILE ]] || source $POWERLEVEL9K_CONFIG_FILE
 
 # Plugins
+typeset -U fpath  # prevent duplicates when re-sourcing
 fpath=(~/.config/zsh/plugins/completions $fpath)
 autoload -U compinit; compinit
 source ~/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
