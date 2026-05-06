@@ -1,6 +1,6 @@
-.zsh_history
 .DS_Store
 *.zwc
 .zcompdump
 .zshrc.local
+.zprofile.local
 

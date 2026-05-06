@@ -1,6 +1,6 @@
 
 # History settings
-HISTFILE=~/.config/zsh/.zsh_history
+HISTFILE=~/.local/share/zsh/zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 

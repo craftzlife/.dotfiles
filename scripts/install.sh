@@ -44,6 +44,8 @@ handle_update() {
   log "Reapplying symlinks..."
   stow . -t ~ --verbose
 
+  setup_zprofile_local
+  setup_zsh_history
   log "Successfully updated dotfiles!"
 }
 
@@ -54,6 +56,7 @@ handle_update() {
 install_homebrew() {
   log "Homebrew is not installed. Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 }
 
 install_prerequisites_macos() {
@@ -126,6 +129,35 @@ setup_zshrc_local() {
   log "Add any local configuration to ~/.config/zsh/.zshrc.local (this file is ignored by git) and it will be sourced automatically when you start a new terminal session."
 }
 
+setup_zprofile_local() {
+  if [[ "$OSTYPE" != "darwin"* ]]; then
+    return 0
+  fi
+
+  local zprofile_local="$HOME/.config/zsh/.zprofile.local"
+  local brew_eval='eval "$(/opt/homebrew/bin/brew shellenv)"'
+
+  mkdir -p "$(dirname "$zprofile_local")"
+
+  if [ ! -f "$zprofile_local" ]; then
+    echo "$brew_eval" >"$zprofile_local"
+    log "Created $zprofile_local with Homebrew shell environment."
+  elif ! grep -qF "brew shellenv" "$zprofile_local"; then
+    echo "$brew_eval" >>"$zprofile_local"
+    log "Added Homebrew shell environment to $zprofile_local."
+  else
+    log "Homebrew shell environment already configured in $zprofile_local."
+  fi
+}
+
+setup_zsh_history() {
+  mkdir -p ~/.local/share/zsh
+  if [ ! -f ~/.local/share/zsh/zsh_history ]; then
+    touch ~/.local/share/zsh/zsh_history
+    log "Created ~/.local/share/zsh/zsh_history for persistent shell history."
+  fi
+}
+
 # ============================================================================
 # Main
 # ============================================================================
@@ -143,6 +175,8 @@ main() {
   # Fresh installation
   clone_dotfiles
   apply_dotfiles
+  setup_zprofile_local
+  setup_zsh_history
   setup_zshrc_local
 }
 
