@@ -52,6 +52,7 @@ alias gst='git status'
 alias gl='git log --graph'
 alias gc='git commit'
 alias ga='git add'
+alias gcam='git commit --all --message'
 alias gcm='git commit --message'
 alias gp="git push"
 
