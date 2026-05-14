@@ -13,6 +13,13 @@ setopt HIST_IGNORE_DUPS
 # Expire duplicate entries first when trimming history.
 setopt HIST_EXPIRE_DUPS_FIRST
 
+# History prefix search with up/down arrow keys
+autoload -U up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
